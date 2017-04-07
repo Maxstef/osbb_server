@@ -40,6 +40,8 @@
       }
   },
 
+  "schedulerMongoDb": "mongodb://localhost:27017/scheduler",
+
   "smsPhoneLogin": "smsCenterLogin",
   "smsPassword": "smsCenterPassword",
   "smsAlphaName": "InfoCentr",

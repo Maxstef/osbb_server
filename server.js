@@ -21,8 +21,8 @@ app.use(cors({
 ));
 
 //Scheduler jobs
-//require('./jobs/smsSend');
-//require('./jobs/emailSend');
+require('./jobs/smsSend');
+require('./jobs/emailSend');
 // Socket controllers
 require('./sockets')(io);
 //Standard route to check if server is ok
