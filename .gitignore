@@ -8,3 +8,4 @@
 /Capfile
 /log/ 
 /log/capistrano.log
+.idea
