@@ -7,7 +7,7 @@
     "password": "942dc48a58da83c28266fedf4bca7ef0049fa376a1346f4cf54f791e2ac7410b",
     "ssl": true,
     "poolSize": 10,
-    "migrationStrategy": "create"
+    "migrationStrategy": "safe"
   },
 
   "auth": {
@@ -40,7 +40,7 @@
       }
   },
 
-  "schedulerMongoDb": "mongodb://localhost:27017/scheduler",
+  "schedulerMongoDb": "mongodb://max:ch047@ds143030.mlab.com:43030/ch-047",
 
   "smsPhoneLogin": "smsCenterLogin",
   "smsPassword": "smsCenterPassword",
