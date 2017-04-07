@@ -40,8 +40,6 @@
       }
   },
 
-  "schedulerMongoDb": "mongodb://max:ch047@ds143030.mlab.com:43030/ch-047",
-
   "smsPhoneLogin": "smsCenterLogin",
   "smsPassword": "smsCenterPassword",
   "smsAlphaName": "InfoCentr",
