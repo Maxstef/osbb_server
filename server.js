@@ -7,7 +7,7 @@ var express = require('express'),
     router = express.Router(),
     port = process.env.PORT || 9009,
     server = require('http').createServer(app),
-    io = require('socket.io')(server);
+    io = require('socket.io')(server, {origins: '*:*'});
     Config = require('config'),
     corsConfig = Config.get("cors");
 
@@ -30,8 +30,7 @@ app.use(function(req, res, next) {
 require('./jobs/smsSend');
 require('./jobs/emailSend');
 // Socket controllers
-require('./sockets')(io);
-io.set( 'origins', '*:*' );
+require('./sockets')(io)(server, {origins: '*:*'});
 //Standard route to check if server is ok
 router.get('/', function (req, res) {
     res.json({data: "Server is up"});
