@@ -31,6 +31,7 @@ require('./jobs/smsSend');
 require('./jobs/emailSend');
 // Socket controllers
 require('./sockets')(io);
+io.set( 'origins', '*:*' );
 //Standard route to check if server is ok
 router.get('/', function (req, res) {
     res.json({data: "Server is up"});
