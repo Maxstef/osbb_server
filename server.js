@@ -41,6 +41,10 @@ router.get('/', function (req, res) {
 require('./controllers/index')(app);
 //Middleware for serving static files.
 app.use(express.static(path.join(__dirname, 'public')));
+app.all('/*', function(req, res, next) {
+  // Just send the index.html for other files to support HTML5Mode
+  res.sendFile('index.html', { root: __dirname });
+})
 //Application models and their initialization
 var models = require('./models');
 models.wl.initialize(models.config, function (err, models) {
