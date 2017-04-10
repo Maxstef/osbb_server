@@ -1,15 +1,15 @@
 var express = require('express'),
-    app = express(),
-    bodyParser = require("body-parser"),
-    path = require('path'),
-    cors = require('cors'),
-    _ = require('lodash'),
-    router = express.Router(),
-    port = process.env.PORT || 9009,
-    server = require('http').createServer(app),
-    io = require('socket.io')(server);
-    Config = require('config'),
-    corsConfig = Config.get("cors");
+  app = express(),
+  bodyParser = require("body-parser"),
+  path = require('path'),
+  cors = require('cors'),
+  _ = require('lodash'),
+  router = express.Router(),
+  port = process.env.PORT || 9009,
+  server = require('http').createServer(app),
+  io = require('socket.io')(server);
+Config = require('config'),
+  corsConfig = Config.get("cors");
 
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -35,25 +35,21 @@ require('./jobs/emailSend');
 require('./sockets')(io);
 //Standard route to check if server is ok
 router.get('/', function (req, res) {
-    res.json({data: "Server is up"});
+  res.json({data: "Server is up"});
 });
 //Application controllers
 require('./controllers/index')(app);
 //Middleware for serving static files.
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/dist', express.static(__dirname + '/../dist'));
-router.get('*', function (req, res, next) {
-  res.sendFile(path.resolve('dist/index.html'));
-});
+app.use(express.static(path.join(__dirname, 'dist')));
 //Application models and their initialization
 var models = require('./models');
 models.wl.initialize(models.config, function (err, models) {
-    if (err) {
-        return console.log(err);
-    }
-    //Seeding of initial user nad superuser and roles
-    models.collections.role.seedRoles(models.collections.user);
+  if (err) {
+    return console.log(err);
+  }
+  //Seeding of initial user nad superuser and roles
+  models.collections.role.seedRoles(models.collections.user);
 
-    server.listen(port);
-    console.log("app starts on port " + port);
+  server.listen(port);
+  console.log("app starts on port " + port);
 });
