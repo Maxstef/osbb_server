@@ -42,10 +42,9 @@ require('./controllers/index')(app);
 //Middleware for serving static files.
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/dist', express.static(__dirname + '/../dist'));
-app.all('/*', function(req, res, next) {
-  // Just send the index.html for other files to support HTML5Mode
-  res.sendFile('index.html', { root: __dirname });
-})
+router.get('*', function (req, res, next) {
+  res.sendFile(path.resolve('dist/index.html'));
+});
 //Application models and their initialization
 var models = require('./models');
 models.wl.initialize(models.config, function (err, models) {
