@@ -15,10 +15,10 @@ var express = require('express'),
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cors(
-  //{
-  //      origin: corsConfig.corsConfig,
-  //      credentials: corsConfig.credentials
-  //}
+  {
+        origin: corsConfig.corsConfig,
+        credentials: corsConfig.credentials
+  }
 ));
 
 //Scheduler jobs
