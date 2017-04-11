@@ -65,17 +65,14 @@ var User = {
     },
 
     hashPassword: function (password) {
-        if (typeof password !== 'undefined'){
+        if (typeof password !== 'undefined') {
             var hashedPassword = crypto.createHmac(Config.get('auth.algorithmHash'), Config.get("auth.passwordHash")).update(password).digest('hex');
             return hashedPassword;
         }
         else {
             return null;
         }
-
-    },
-
+    }
 };
-
 
 module.exports = Waterline.Collection.extend(User);

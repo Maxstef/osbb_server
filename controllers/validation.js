@@ -9,6 +9,9 @@ module.exports = function (router) {
                 return res.json({data: "You must provide type param", code: 500});
             }
             switch (req.query.type) {
+                case "username":
+                    usernameUnique(req, res);
+                    break;
                 case "phone":
                     phoneUnique(req, res);
                     break;
@@ -22,6 +25,25 @@ module.exports = function (router) {
                     return res.json({data: "Type not found", code: 500});
             }
         });
+    function usernameUnique(req, res) {
+        var findCriteria = {
+            "username": req.query.value
+        };
+
+        if (req.query.valueAdd != 0) {
+            findCriteria.id = {"!": parseInt(req.query.valueAdd)};
+        }
+        models.wl.collections.user.find(findCriteria)
+            .then(function (users) {
+                console.log(users);
+                res.json({
+                    data: users.length == 0,
+                    code: 200
+                });
+            }).catch(function (err) {
+            res.json({data: err.toString(), code: 500});
+        });
+    }
     function phoneUnique(req, res) {
         models.wl.collections.inhabitant.find({
             "phoneNumber": req.query.value
